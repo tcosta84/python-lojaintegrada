@@ -4,8 +4,16 @@ A simple Python API Wrapper for e-commerce platform [Loja Integrada](https://loj
 
 ## Install
 
+Via Pip:
+
 ``` bash
 $ pip install lojaintegradapy
+```
+
+Via GIT:
+
+``` bash
+$ pip install git+https://git@github.com/tcosta84/python-lojaintegrada.git
 ```
 
 ## Usage
