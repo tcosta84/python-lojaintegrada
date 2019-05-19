@@ -7,7 +7,7 @@ A simple Python API Wrapper for e-commerce platform [Loja Integrada](https://loj
 Via Pip:
 
 ``` bash
-$ pip install lojaintegradapy
+$ pip install lojaintegrada
 ```
 
 Via GIT:
@@ -32,6 +32,22 @@ for page in api.get_orders():
 
 By default, an automatic retry will be done every time a rate limit error (throttling) occurs (http status code "429").
 
+### Using filters
+
+You can pass keyword arguments (kwargs) for those apis that provide filters. Simple as that:
+
+``` python
+
+from lojaintegrada import Api
+
+api = Api('your-api-key', 'your-app-key')
+
+for page in api.get_orders(situacao_id=4, since_criado='2019-05-01'):
+	for obj in page['objects']:
+		order_id = obj['numero']
+		order_data = api.get_order(order_id)
+```
+
 ## Testing
 
 ``` bash
@@ -40,7 +56,7 @@ $ make test
 
 ## Security
 
-If you discover any security related issues, please email thiagodacosta@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email thiagodacostabr@gmail.com instead of using the issue tracker.
 
 ## Credits
 
