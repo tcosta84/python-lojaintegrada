@@ -2,12 +2,17 @@ import logging
 import requests
 import time
 
-from .exceptions import ApiError
 
 logger = logging.getLogger(__name__)
 
 
-class LIApi(object):
+class ApiError(Exception):
+    def __init__(self, request, response=None):
+        self.request = request
+        self.response = response
+
+
+class Api(object):
     """A Python API Wrapper for "Loja Integrada" e-commerce platform."""
 
     def __init__(self, api_key, app_key, rate_limit_retry_delay=10):
@@ -58,7 +63,6 @@ class LIApi(object):
         Raises:
         -------
             - ApiError
-            - ApiRateLimitError
         """
         uri = '/api/{}/pedido/{}'.format(self.version, id)
         url = '{}{}'.format(self.root_uri, uri)
@@ -143,11 +147,11 @@ class LIApi(object):
         })
         return s
 
-    def _make_request(self, verb, url, params=None, data=None):
+    def _make_request(self, method, url, params=None, data=None):
         retry_counter = 0
         while True:
             try:
-                r = self.session.request(verb, url, params=params, json=data)
+                r = self.session.request(method, url, params=params, json=data)
                 r.raise_for_status()
                 return r.json()
             except requests.exceptions.HTTPError as e:

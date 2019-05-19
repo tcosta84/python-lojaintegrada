@@ -2,7 +2,7 @@ import logging
 
 from decouple import config
 
-from lojaintegrada import LIApi
+from lojaintegrada import Api
 
 """
 Before running this example, create a .env file with two vars:
@@ -20,7 +20,7 @@ logging.basicConfig(
 api_key = config('API_KEY')
 app_key = config('APP_KEY')
 
-api = LIApi(api_key, app_key)
+api = Api(api_key, app_key)
 
 orders = []
 for page in api.get_paid_orders(limit=5):

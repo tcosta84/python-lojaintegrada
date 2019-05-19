@@ -12,9 +12,9 @@ $ pip install lojaintegradapy
 
 ``` python
 
-from lojaintegrada import LIApi
+from lojaintegrada import Api
 
-api = LIApi('your-api-key', 'your-app-key')
+api = Api('your-api-key', 'your-app-key')
 
 for page in api.get_orders():
 	for obj in page['objects']:
