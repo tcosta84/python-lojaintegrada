@@ -23,7 +23,6 @@ for page in api.get_orders():
 ```
 
 By default, an automatic retry will be done every time a rate limit error (throttling) occurs (http status code "429").
-```
 
 ## Testing
 
