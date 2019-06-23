@@ -37,10 +37,22 @@ class Api(object):
 
         self.session = self._build_session(api_key, app_key)
 
+    def get_brands(self, limit=50):
+        """Returns a generator containing brands."""
+        uri = '/api/{}/marca'.format(self.version)
+        url = '{}{}'.format(self.root_uri, uri)
+        return self._get_objects(url, limit=limit)
+
     def get_brand(self, id):
         uri = '/api/{}/marca/{}'.format(self.version, id)
         url = '{}{}'.format(self.root_uri, uri)
         return self._make_request('GET', url)
+
+    def get_categories(self, limit=50):
+        """Returns a generator containing categories."""
+        uri = '/api/{}/categoria'.format(self.version)
+        url = '{}{}'.format(self.root_uri, uri)
+        return self._get_objects(url, limit=limit)
 
     def get_category(self, id):
         uri = '/api/{}/categoria/{}'.format(self.version, id)
