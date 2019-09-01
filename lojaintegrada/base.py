@@ -118,6 +118,11 @@ class Api(object):
         url = '{}{}'.format(self.root_uri, uri)
         return self._make_request('GET', url)
 
+    def get_order_status(self, id):
+        uri = '/api/{}/situacao/pedido/{}'.format(self.version, id)
+        url = '{}{}'.format(self.root_uri, uri)
+        return self._make_request('GET', url)
+
     def update_order_status(self, id, status):
         data = {'codigo': status}
         uri = '/api/{}/situacao/pedido/{}'.format(self.version, id)
