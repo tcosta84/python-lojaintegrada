@@ -143,6 +143,9 @@ class Api(object):
     def mark_order_as_in_separation(self, id):
         return self.update_order_status(id, 'pedido_em_separacao')
 
+    def mark_order_as_sent(self, id):
+        return self.update_order_status(id, 'pedido_enviado')
+
     def _get_objects(self, url, **params):
         while url:
             data = self._make_request('GET', url, params=params)
