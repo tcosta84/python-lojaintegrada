@@ -146,6 +146,12 @@ class Api(object):
     def mark_order_as_sent(self, id):
         return self.update_order_status(id, 'pedido_enviado')
 
+    def update_tracking_code(self, shipping_id, tracking_code):
+        data = {'objeto': tracking_code}
+        uri = '/api/{}/pedido_envio/{}'.format(self.version, shipping_id)
+        url = '{}{}'.format(self.root_uri, uri)
+        return self._make_request('PUT', url, data=data)
+
     def _get_objects(self, url, **params):
         while url:
             data = self._make_request('GET', url, params=params)
