@@ -152,6 +152,11 @@ class Api(object):
         url = '{}{}'.format(self.root_uri, uri)
         return self._make_request('PUT', url, data=data)
 
+    def update_product(self, id, data):
+        uri = '/api/{}/produto/{}'.format(self.version, id)
+        url = '{}{}'.format(self.root_uri, uri)
+        return self._make_request('PUT', url, data=data)
+
     def _get_objects(self, url, **params):
         while url:
             data = self._make_request('GET', url, params=params)
