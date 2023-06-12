@@ -86,6 +86,11 @@ class Api(object):
         url = '{}{}'.format(self.root_uri, uri)
         return self._get_objects(url, limit=limit, **filters)
 
+    def get_prices(self, limit=50, **filters):
+        uri = '/api/{}/produto_preco'.format(self.version)
+        url = '{}{}'.format(self.root_uri, uri)
+        return self._get_objects(url, limit=limit, **filters)
+
     def get_price(self, product_id):
         uri = '/api/{}/produto_preco/{}'.format(self.version, product_id)
         url = '{}{}'.format(self.root_uri, uri)
